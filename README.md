@@ -66,9 +66,6 @@ Built with Python and Tkinter, it eliminates the need to manually edit `php.ini`
 
 
 
-
-*(Note: Replace the placeholder screenshot URL with your actual new screenshot showing the Config & Tools tab)*
-
 ### 📋 System Requirements
 
 | Component | Minimum | Recommended |
