@@ -23,7 +23,8 @@
 
 ### 🖼️ Screenshots
 
-*(Add your screenshots here)*
+<img width="946" height="855" alt="image" src="https://github.com/user-attachments/assets/54a035a9-f8e4-42c4-9f2c-877e79c0261e" />
+
 
 ### 📋 System Requirements
 
