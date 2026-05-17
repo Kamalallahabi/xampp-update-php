@@ -1,13 +1,11 @@
-# 🚀 PHP Manager Enterprise
+# 🚀 XAMPP Pro Manager (PHP Manager Enterprise)
 
-**Professional PHP Version Manager for XAMPP with Automatic DLL Conflict Resolution**
+**The Ultimate All-in-One Control Center for XAMPP: Version Management, Configuration, & Security Tools**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://www.microsoft.com/windows)
 [![XAMPP](https://img.shields.io/badge/XAMPP-7.x%2B-green.svg)](https://www.apachefriends.org/)
-
-[English](#english) | [العربية](#arabic)
 
 ---
 
@@ -27,34 +25,55 @@
 
 ### 🎯 Overview
 
-**PHP Manager Enterprise** is a professional-grade desktop application that revolutionizes PHP version management in XAMPP environments. Built with Python and Tkinter, it provides a seamless solution for developers and system administrators to install, switch, and manage multiple PHP versions while automatically resolving DLL conflicts and ensuring Apache compatibility.
+**XAMPP Pro Manager** (formerly PHP Manager Enterprise) is a comprehensive desktop application designed to simplify and enhance the XAMPP development experience. It goes beyond simple version management by providing a unified interface for **PHP Version Control**, **Configuration Editing**, **Developer Tools**, and **Security Settings**.
 
-**The Problem:** Manually updating PHP in XAMPP often leads to frustrating DLL mismatches, Apache configuration errors, and hours of troubleshooting.
+Built with Python and Tkinter, it eliminates the need to manually edit `php.ini`, struggle with DLL conflicts, or use command-line tools for basic tasks. Whether you are switching PHP versions, increasing upload limits, or securing your MySQL database, this tool does it all with a single click.
 
-**The Solution:** PHP Manager Enterprise automates the entire process - from downloading compatible versions to fixing conflicts and updating configurations - saving you countless hours of manual work.
+**The Problem:** Developers waste hours manually editing configuration files, resolving DLL errors after PHP updates, and toggling settings for debugging vs. production.
+
+**The Solution:** A centralized dashboard that automates version switching, provides a GUI for `php.ini` settings, manages extensions, and offers one-click "Dev Mode" toggles.
 
 ### ✨ Key Features
 
+#### 🔄 Advanced Version Management
 | Feature | Description |
 |---------|-------------|
-| 🔄 **Smart Version Management** | Install, switch, and maintain multiple PHP versions with zero configuration hassle |
-| 🔧 **Automatic DLL Resolution** | Intelligently detects and resolves conflicts between PHP and Apache DLLs (libssl, libcrypto, libssh2, etc.) |
-| 🏗️ **Seamless Apache Integration** | Automatically updates Apache configurations (httpd.conf, httpd-xampp.conf) for perfect compatibility |
-| 💾 **Intelligent Backup System** | Creates timestamped backups before any critical operation with one-click restoration |
-| 🎯 **Architecture Detection** | Automatically detects Apache architecture (32-bit/64-bit) and recommends compatible PHP versions |
-| 📊 **Real-time Progress Tracking** | Visual progress bar with detailed status updates for all operations |
-| 🌐 **Bilingual Interface** | Full support for English and Arabic with instant language switching |
-| 🛡️ **Safe Rollback Mechanism** | Instant recovery from any backup point with automatic conflict resolution |
-| 📝 **Comprehensive Logging** | Detailed operation logs with timestamp and color-coded severity levels |
-| ⚡ **Multi-threaded Operations** | Non-blocking UI during downloads and installations |
+| **Smart Installation** | Download and install compatible PHP versions automatically. |
+| **One-Click Switching** | Switch between installed PHP versions instantly without manual file moving. |
+| **Auto-DLL Fixer** | Detects and resolves `libssl`, `libcrypto`, and other DLL conflicts between PHP and Apache. |
+| **Apache Integration** | Automatically updates `httpd.conf` and `httpd-xampp.conf` to match the active PHP version. |
+
+#### ⚙️ Configuration & Tools (New!)
+| Feature | Description |
+|---------|-------------|
+| **Extension Manager** | Enable/Disable PHP extensions (curl, gd, openssl, etc.) via checkboxes instead of editing text files. |
+| **Upload & Memory Limits** | Easily adjust `upload_max_filesize`, `post_max_size`, and `memory_limit` via input fields. |
+| **Dev/Prod Mode Toggle** | One-click switch: **Dev Mode** (Errors ON, OpCache OFF) vs **Prod Mode** (Errors OFF, OpCache ON). |
+| **MySQL Security** | Set or change the MySQL `root` password directly from the interface. |
+
+#### 🛡️ Reliability & UX
+| Feature | Description |
+|---------|-------------|
+| **Intelligent Backups** | Automatic timestamped backups of PHP folders before any change. |
+| **Bilingual Interface** | Full support for **English** and **Arabic** with RTL layout support. |
+| **Real-time Logging** | Color-coded operation logs for easy troubleshooting. |
+| **Non-Blocking UI** | Multi-threaded operations ensure the interface remains responsive during downloads. |
 
 ### 🖼️ User Interface
 
 <div align="center">
-  <img width="946" height="855" alt="PHP Manager Enterprise Interface" src="https://github.com/user-attachments/assets/54a035a9-f8e4-42c4-9f2c-877e79c0261e" />
+  <img width="946" height="855" alt="XAMPP Pro Manager Interface" src="https://github.com/user-attachments/assets/54a035a9-f8e4-42c4-9f2c-877e79c0261e" />
   <br />
-  <em>Main Application Interface - Clean, Professional, and Intuitive</em>
+  <em>Main Dashboard: Version Management & Server Status</em>
 </div>
+
+<div align="center">
+  <img width="946" height="855" alt="Configuration Tools" src="https://github.com/user-attachments/assets/PLACEHOLDER_FOR_CONFIG_SCREENSHOT" />
+  <br />
+  <em>Configuration Hub: Extensions, Limits, and Dev Tools</em>
+</div>
+
+*(Note: Replace the placeholder screenshot URL with your actual new screenshot showing the Config & Tools tab)*
 
 ### 📋 System Requirements
 
@@ -66,7 +85,7 @@
 | **Internet Connection** | Required (for downloads) | Broadband connection |
 | **RAM** | 512 MB | 2 GB |
 | **Disk Space** | 500 MB | 2 GB |
-| **Administrator Rights** | Not required | Recommended for best experience |
+| **Administrator Rights** | Not required | Recommended for MySQL/Service changes |
 
 ### 🔧 Quick Installation
 
