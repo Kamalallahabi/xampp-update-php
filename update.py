@@ -43,6 +43,7 @@ class Localization:
             'fix_dll': "🔧 Fix Current DLL Issues",
             'fix_phpmyadmin': "🐘 Fix phpMyAdmin Issues",
             'restart_apache': "🔄 Restart Apache",
+            'open_config_tool': "⚙️ PHP Config & Tools",
             'no_path': "❌ XAMPP path not selected",
             'path_info': "✅ Path: {path}\n📌 Current PHP Version: {version}\n📁 Apache Folder: {apache}",
             'no_php': "⚠️ Path: {path}\n❌ PHP not found",
@@ -109,7 +110,23 @@ class Localization:
             'progress_switch': "Switching to PHP {version}...",
             'progress_rollback': "Restoring backup...",
             'progress_fix': "Fixing DLL issues...",
-            'progress_loading': "Loading versions..."
+            'progress_loading': "Loading versions...",
+            
+            # New Config Tool Texts
+            'config_tool_title': "PHP Configuration & Tools",
+            'ext_manager': "Extension Manager",
+            'upload_limits': "Upload & Memory Limits",
+            'dev_tools': "Developer Tools",
+            'mysql_security': "MySQL Security",
+            'save_config': "💾 Save Changes",
+            'enable_dev': "🛠️ Enable Dev Mode",
+            'disable_dev': "🚀 Enable Prod Mode",
+            'set_mysql_pass': "Set Root Password",
+            'pass_set_success': "MySQL password updated successfully.",
+            'pass_set_fail': "Failed to update password. Is MySQL running?",
+            'config_saved': "Configuration saved! Restart Apache to apply.",
+            'dev_enabled': "Dev Mode Enabled (Errors ON, OpCache OFF).",
+            'prod_enabled': "Prod Mode Enabled (Errors OFF, OpCache ON)."
         },
         'ar': {
             'window_title': "مدير PHP المتقدم - إصلاح مشاكل DLL و Apache و phpMyAdmin",
@@ -130,6 +147,7 @@ class Localization:
             'fix_dll': "🔧 إصلاح مشاكل DLL",
             'fix_phpmyadmin': "🐘 إصلاح مشاكل phpMyAdmin",
             'restart_apache': "🔄 إعادة تشغيل Apache",
+            'open_config_tool': "⚙️ إعدادات PHP والأدوات",
             'no_path': "❌ لم يتم اختيار مسار XAMPP",
             'path_info': "✅ المسار: {path}\n📌 الإصدار الحالي: {version}\n📁 مجلد Apache: {apache}",
             'no_php': "⚠️ المسار: {path}\n❌ لم يتم العثور على PHP",
@@ -196,7 +214,23 @@ class Localization:
             'progress_switch': "جاري التبديل إلى PHP {version}...",
             'progress_rollback': "جاري استعادة النسخة الاحتياطية...",
             'progress_fix': "جاري إصلاح مشاكل DLL...",
-            'progress_loading': "جاري جلب الإصدارات..."
+            'progress_loading': "جاري جلب الإصدارات...",
+            
+            # New Config Tool Texts
+            'config_tool_title': "إعدادات PHP والأدوات",
+            'ext_manager': "مدير الإضافات (Extensions)",
+            'upload_limits': "حدود الرفع والذاكرة",
+            'dev_tools': "أدوات المطورين",
+            'mysql_security': "أمان MySQL",
+            'save_config': "💾 حفظ التغييرات",
+            'enable_dev': "🛠️ تفعيل وضع التطوير",
+            'disable_dev': "🚀 تفعيل وضع الإنتاج",
+            'set_mysql_pass': "تعيين كلمة مرور Root",
+            'pass_set_success': "تم تحديث كلمة مرور MySQL بنجاح.",
+            'pass_set_fail': "فشل التحديث. هل خدمة MySQL تعمل؟",
+            'config_saved': "تم حفظ الإعدادات! أعد تشغيل Apache للتطبيق.",
+            'dev_enabled': "تم تفعيل وضع التطوير (الأخطاء ظاهرة، OpCache معطل).",
+            'prod_enabled': "تم تفعيل وضع الإنتاج (الأخطاء مخفية، OpCache مفعل)."
         }
     }
     
@@ -233,6 +267,8 @@ class PHPManager:
             self.apache_dir = self.xampp / "apache"
             self.apache_bin = self.apache_dir / "bin"
             self.phpmyadmin_dir = self.xampp / "phpMyAdmin"
+            self.mysql_dir = self.xampp / "mysql"
+            self.mysql_bin = self.mysql_dir / "bin"
 
             self.versions_dir.mkdir(exist_ok=True, parents=True)
             self.backups_dir.mkdir(exist_ok=True, parents=True)
@@ -245,6 +281,7 @@ class PHPManager:
             self.apache_dir = None
             self.apache_bin = None
             self.phpmyadmin_dir = None
+            self.mysql_bin = None
 
     def _auto_detect_xampp(self):
         common_paths = [
@@ -901,6 +938,90 @@ opcache.fast_shutdown=1
         
         return sorted(versions, key=lambda v: [int(x) for x in v.split('.')], reverse=True)
 
+    # ==========================================
+    # NEW HELPER METHODS FOR CONFIG TOOLS
+    # ==========================================
+
+    def read_php_ini(self):
+        php_ini_path = self.xampp / "php" / "php.ini"
+        if php_ini_path.exists():
+            with open(php_ini_path, 'r', encoding='utf-8', errors='ignore') as f:
+                return f.read()
+        return None
+
+    def write_php_ini(self, content):
+        php_ini_path = self.xampp / "php" / "php.ini"
+        if php_ini_path.exists():
+            # Create backup
+            backup = php_ini_path.parent / f"php.ini.bak_{datetime.now().strftime('%H%M%S')}"
+            shutil.copy2(php_ini_path, backup)
+            
+            with open(php_ini_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            return True
+        return False
+
+    def update_ini_setting(self, content, key, value):
+        """Updates or adds a key=value pair in php.ini content"""
+        pattern = rf'^\s*;?\s*{re.escape(key)}\s*=.*$'
+        replacement = f"{key} = {value}"
+        
+        if re.search(pattern, content, re.MULTILINE | re.IGNORECASE):
+            new_content = re.sub(pattern, replacement, content, flags=re.MULTILINE | re.IGNORECASE)
+        else:
+            new_content = content + f"\n{replacement}\n"
+        return new_content
+
+    def toggle_extension(self, content, ext_name, enable):
+        """Enables or disables an extension like 'extension=curl'"""
+        patterns = [
+            rf'^\s*;\s*extension={ext_name}\s*$',
+            rf'^\s*extension={ext_name}\s*$',
+            rf'^\s*;\s*extension=php_{ext_name}.dll\s*$',
+            rf'^\s*extension=php_{ext_name}.dll\s*$'
+        ]
+        
+        lines = content.splitlines()
+        new_lines = []
+        found = False
+        
+        for line in lines:
+            matched = False
+            for pat in patterns:
+                if re.match(pat, line.strip(), re.IGNORECASE):
+                    matched = True
+                    break
+            
+            if matched:
+                found = True
+                if enable:
+                    clean_name = ext_name
+                    new_lines.append(f"extension={clean_name}")
+                else:
+                    new_lines.append(f";extension={ext_name}")
+            else:
+                new_lines.append(line)
+                
+        if not found and enable:
+            new_lines.append(f"extension={ext_name}")
+            
+        return "\n".join(new_lines)
+
+    def set_mysql_password(self, new_password):
+        """Sets root password for MySQL using command line"""
+        if not self.mysql_bin: return False
+        mysql_exe = self.mysql_bin / "mysql.exe"
+        
+        if not mysql_exe.exists():
+            return False
+            
+        try:
+            cmd = [str(mysql_exe), "-u", "root", "-e", f"ALTER USER 'root'@'localhost' IDENTIFIED BY '{new_password}'; FLUSH PRIVILEGES;"]
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+            return result.returncode == 0
+        except Exception:
+            return False
+
 
 class AppUI:
     def __init__(self, root):
@@ -951,6 +1072,7 @@ class AppUI:
         self.btn_fix_dll.config(text=self.translator.get('fix_dll'))
         self.btn_fix_phpmyadmin.config(text=self.translator.get('fix_phpmyadmin'))
         self.btn_restart_apache.config(text=self.translator.get('restart_apache'))
+        self.btn_config_tool.config(text=self.translator.get('open_config_tool'))
         
         self.btn_language.config(text=f"🌐 {self.translator.LANGUAGES[self.translator.current_language]}")
         self.select_label.config(text="Select version:" if self.translator.current_language == 'en' else "اختر الإصدار:")
@@ -1001,6 +1123,12 @@ class AppUI:
                                          bg="#e67e22", fg="white", padx=15, pady=5)
         self.btn_check_compat.pack(side=tk.LEFT, padx=5)
         
+        # NEW BUTTON FOR CONFIG TOOL
+        self.btn_config_tool = tk.Button(control_frame, text=self.translator.get('open_config_tool'),
+                                        command=self.open_config_tool,
+                                        bg="#8e44ad", fg="white", padx=15, pady=5)
+        self.btn_config_tool.pack(side=tk.LEFT, padx=5)
+
         self.version_frame = tk.LabelFrame(main_frame, text=self.translator.get('php_management'), 
                                           font=("Arial", 11, "bold"))
         self.version_frame.pack(fill=tk.X, pady=(0, 15))
@@ -1354,6 +1482,120 @@ class AppUI:
                     self.translator.get('rollback_failed', error=str(e))))
         
         threading.Thread(target=task, daemon=True).start()
+
+    # ==========================================
+    # NEW CONFIG TOOL WINDOW LOGIC
+    # ==========================================
+    def open_config_tool(self):
+        if not self.manager:
+            messagebox.showerror(self.translator.get('error_title'), self.translator.get('no_path_error'))
+            return
+
+        tool_win = tk.Toplevel(self.root)
+        tool_win.title(self.translator.get('config_tool_title'))
+        tool_win.geometry("600x650")
+        
+        # Read current ini
+        content = self.manager.read_php_ini()
+        if not content:
+            messagebox.showerror("Error", "Could not read php.ini")
+            return
+
+        # --- Extensions Frame ---
+        ext_frame = tk.LabelFrame(tool_win, text=self.translator.get('ext_manager'), padx=10, pady=10)
+        ext_frame.pack(fill=tk.X, padx=10, pady=5)
+        
+        ext_vars = {}
+        common_exts = ['curl', 'gd', 'mbstring', 'mysqli', 'pdo_mysql', 'openssl', 'soap', 'xsl', 'zip', 'zlib']
+        
+        grid_frame = tk.Frame(ext_frame)
+        grid_frame.pack(fill=tk.X)
+        
+        for i, ext in enumerate(common_exts):
+            var = tk.BooleanVar()
+            # Check if active
+            if re.search(rf'^\s*extension={ext}\s*$', content, re.MULTILINE | re.IGNORECASE) or \
+               re.search(rf'^\s*extension=php_{ext}.dll\s*$', content, re.MULTILINE | re.IGNORECASE):
+                var.set(True)
+            ext_vars[ext] = var
+            chk = tk.Checkbutton(grid_frame, text=ext, variable=var)
+            chk.grid(row=i//3, column=i%3, sticky="w", padx=5)
+
+        # --- Upload Limits Frame ---
+        limit_frame = tk.LabelFrame(tool_win, text=self.translator.get('upload_limits'), padx=10, pady=10)
+        limit_frame.pack(fill=tk.X, padx=10, pady=5)
+        
+        def get_val(key, default):
+            m = re.search(rf'{key}\s*=\s*(\S+)', content, re.IGNORECASE)
+            return m.group(1) if m else default
+
+        tk.Label(limit_frame, text="Upload Max Filesize:").grid(row=0, column=0, sticky="w")
+        upload_var = tk.StringVar(value=get_val('upload_max_filesize', '100M'))
+        tk.Entry(limit_frame, textvariable=upload_var, width=15).grid(row=0, column=1, padx=5)
+        
+        tk.Label(limit_frame, text="Post Max Size:").grid(row=1, column=0, sticky="w")
+        post_var = tk.StringVar(value=get_val('post_max_size', '100M'))
+        tk.Entry(limit_frame, textvariable=post_var, width=15).grid(row=1, column=1, padx=5)
+        
+        tk.Label(limit_frame, text="Memory Limit:").grid(row=2, column=0, sticky="w")
+        mem_var = tk.StringVar(value=get_val('memory_limit', '256M'))
+        tk.Entry(limit_frame, textvariable=mem_var, width=15).grid(row=2, column=1, padx=5)
+
+        # --- Dev Tools Frame ---
+        dev_frame = tk.LabelFrame(tool_win, text=self.translator.get('dev_tools'), padx=10, pady=10)
+        dev_frame.pack(fill=tk.X, padx=10, pady=5)
+        
+        def toggle_dev(enable):
+            nonlocal content
+            if enable:
+                content = self.manager.update_ini_setting(content, 'display_errors', 'On')
+                content = self.manager.update_ini_setting(content, 'opcache.enable', '0')
+                msg = self.translator.get('dev_enabled')
+            else:
+                content = self.manager.update_ini_setting(content, 'display_errors', 'Off')
+                content = self.manager.update_ini_setting(content, 'opcache.enable', '1')
+                msg = self.translator.get('prod_enabled')
+            messagebox.showinfo("Mode", msg)
+
+        tk.Button(dev_frame, text=self.translator.get('enable_dev'), command=lambda: toggle_dev(True), bg="#8e44ad", fg="white").pack(side=tk.LEFT, padx=5)
+        tk.Button(dev_frame, text=self.translator.get('disable_dev'), command=lambda: toggle_dev(False), bg="#27ae60", fg="white").pack(side=tk.LEFT, padx=5)
+
+        # --- MySQL Security Frame ---
+        sec_frame = tk.LabelFrame(tool_win, text=self.translator.get('mysql_security'), padx=10, pady=10)
+        sec_frame.pack(fill=tk.X, padx=10, pady=5)
+        
+        pass_var = tk.StringVar()
+        tk.Label(sec_frame, text="New Root Password:").pack(side=tk.LEFT, padx=5)
+        tk.Entry(sec_frame, textvariable=pass_var, show="*", width=20).pack(side=tk.LEFT, padx=5)
+        
+        def set_pass():
+            pwd = pass_var.get()
+            if pwd and self.manager.set_mysql_password(pwd):
+                messagebox.showinfo("Success", self.translator.get('pass_set_success'))
+            else:
+                messagebox.showerror("Error", self.translator.get('pass_set_fail'))
+                
+        tk.Button(sec_frame, text=self.translator.get('set_mysql_pass'), command=set_pass, bg="#c0392b", fg="white").pack(side=tk.LEFT, padx=5)
+
+        # --- Save Button ---
+        def save_all():
+            nonlocal content
+            # Apply extensions
+            for ext, var in ext_vars.items():
+                content = self.manager.toggle_extension(content, ext, var.get())
+            
+            # Apply limits
+            content = self.manager.update_ini_setting(content, 'upload_max_filesize', upload_var.get())
+            content = self.manager.update_ini_setting(content, 'post_max_size', post_var.get())
+            content = self.manager.update_ini_setting(content, 'memory_limit', mem_var.get())
+            
+            if self.manager.write_php_ini(content):
+                messagebox.showinfo("Success", self.translator.get('config_saved'))
+                tool_win.destroy()
+            else:
+                messagebox.showerror("Error", "Failed to write php.ini")
+
+        tk.Button(tool_win, text=self.translator.get('save_config'), command=save_all, bg="#2980b9", fg="white", font=("Arial", 10, "bold")).pack(pady=20)
 
 
 if __name__ == "__main__":
