@@ -61,17 +61,11 @@ Built with Python and Tkinter, it eliminates the need to manually edit `php.ini`
 
 ### 🖼️ User Interface
 
-<div align="center">
-  <img width="946" height="855" alt="XAMPP Pro Manager Interface" src="https://github.com/user-attachments/assets/54a035a9-f8e4-42c4-9f2c-877e79c0261e" />
-  <br />
-  <em>Main Dashboard: Version Management & Server Status</em>
-</div>
+<img width="951" height="828" alt="image" src="https://github.com/user-attachments/assets/c1d8a80b-58d0-4b75-8127-307569a1e5b8" />
+<img width="596" height="679" alt="image" src="https://github.com/user-attachments/assets/a250d2e5-fa78-406e-8306-8a26a3088d1d" />
 
-<div align="center">
-  <img width="946" height="855" alt="Configuration Tools" src="https://github.com/user-attachments/assets/PLACEHOLDER_FOR_CONFIG_SCREENSHOT" />
-  <br />
-  <em>Configuration Hub: Extensions, Limits, and Dev Tools</em>
-</div>
+
+
 
 *(Note: Replace the placeholder screenshot URL with your actual new screenshot showing the Config & Tools tab)*
 
