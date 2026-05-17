@@ -1,79 +1,78 @@
-🚀 PHP Manager Enterprise
+# 🚀 PHP Manager Enterprise
 
-English | العربية
+**Professional PHP Version Manager for XAMPP with Automatic DLL Conflict Resolution**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://www.microsoft.com/windows)
+[![XAMPP](https://img.shields.io/badge/XAMPP-7.x%2B-green.svg)](https://www.apachefriends.org/)
+
+[English](#english) | [العربية](#arabic)
+
+---
+
+## 📊 Statistics & Status
+
+![GitHub stars](https://img.shields.io/github/stars/yourusername/php-manager-enterprise?style=social)
+![GitHub forks](https://img.shields.io/github/forks/yourusername/php-manager-enterprise?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/yourusername/php-manager-enterprise?style=social)
+![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/php-manager-enterprise)
+![GitHub issues](https://img.shields.io/github/issues/yourusername/php-manager-enterprise)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/php-manager-enterprise)
+
+---
 
 <a name="english"></a>
+## 📖 English Documentation
 
-📖 English Documentation
-🔍 Overview
+### 🎯 Overview
 
-PHP Manager Enterprise is an advanced desktop application designed to simplify and secure PHP version management inside XAMPP environments.
+**PHP Manager Enterprise** is a professional-grade desktop application that revolutionizes PHP version management in XAMPP environments. Built with Python and Tkinter, it provides a seamless solution for developers and system administrators to install, switch, and manage multiple PHP versions while automatically resolving DLL conflicts and ensuring Apache compatibility.
 
-It provides automated version switching, dependency handling, and compatibility protection between PHP, Apache, and required system DLLs (OpenSSL, libssh2, cURL), ensuring stable server operations after upgrades.
+**The Problem:** Manually updating PHP in XAMPP often leads to frustrating DLL mismatches, Apache configuration errors, and hours of troubleshooting.
 
-✨ Key Features
-🔄 Multi-Version PHP Management
-Install, switch, and manage multiple PHP versions seamlessly inside XAMPP.
-🧠 Smart Compatibility Engine
-Automatically detects Apache architecture (x64/x86) and validates PHP build compatibility before installation.
-🔧 Automatic DLL Conflict Resolution
-Fixes common runtime issues such as:
-libssh2 conflicts
-OpenSSL mismatches
-php_curl dependency errors
-🏗️ Apache Integration Layer
-Ensures PHP changes are safely applied without breaking Apache configuration or modules.
-💾 Safe Backup System
-Automatically creates full backups before any modification with one-click rollback support.
-📊 Real-Time Progress Tracking
-Live status updates for download, extraction, and installation processes.
-🌐 Dual Language Support
-Full support for English and Arabic UI.
-🛡️ Crash Recovery Mode
-Built-in recovery system to restore PHP and fix broken environments after failed updates.
-🖼️ Screenshots
-<img width="946" height="855" alt="image" src="https://github.com/user-attachments/assets/54a035a9-f8e4-42c4-9f2c-877e79c0261e" />
-📋 System Requirements
-🪟 Operating System: Windows 10/11 (64-bit recommended)
-🧩 XAMPP: Version 7.x or later
-🐍 Python: 3.7+
-🌐 Internet Connection: Required for fetching PHP releases
-🧠 Memory: Minimum 512 MB RAM
-💾 Storage: At least 500 MB free disk space
-⚙️ Installation
-1. Install Python Dependencies
+**The Solution:** PHP Manager Enterprise automates the entire process - from downloading compatible versions to fixing conflicts and updating configurations - saving you countless hours of manual work.
+
+### ✨ Key Features
+
+| Feature | Description |
+|---------|-------------|
+| 🔄 **Smart Version Management** | Install, switch, and maintain multiple PHP versions with zero configuration hassle |
+| 🔧 **Automatic DLL Resolution** | Intelligently detects and resolves conflicts between PHP and Apache DLLs (libssl, libcrypto, libssh2, etc.) |
+| 🏗️ **Seamless Apache Integration** | Automatically updates Apache configurations (httpd.conf, httpd-xampp.conf) for perfect compatibility |
+| 💾 **Intelligent Backup System** | Creates timestamped backups before any critical operation with one-click restoration |
+| 🎯 **Architecture Detection** | Automatically detects Apache architecture (32-bit/64-bit) and recommends compatible PHP versions |
+| 📊 **Real-time Progress Tracking** | Visual progress bar with detailed status updates for all operations |
+| 🌐 **Bilingual Interface** | Full support for English and Arabic with instant language switching |
+| 🛡️ **Safe Rollback Mechanism** | Instant recovery from any backup point with automatic conflict resolution |
+| 📝 **Comprehensive Logging** | Detailed operation logs with timestamp and color-coded severity levels |
+| ⚡ **Multi-threaded Operations** | Non-blocking UI during downloads and installations |
+
+### 🖼️ User Interface
+
+<div align="center">
+  <img width="946" height="855" alt="PHP Manager Enterprise Interface" src="https://github.com/user-attachments/assets/54a035a9-f8e4-42c4-9f2c-877e79c0261e" />
+  <br />
+  <em>Main Application Interface - Clean, Professional, and Intuitive</em>
+</div>
+
+### 📋 System Requirements
+
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| **Operating System** | Windows 7 | Windows 10/11 (64-bit) |
+| **XAMPP Version** | 7.x | 8.x or higher |
+| **Python Version** | 3.7 | 3.11+ |
+| **Internet Connection** | Required (for downloads) | Broadband connection |
+| **RAM** | 512 MB | 2 GB |
+| **Disk Space** | 500 MB | 2 GB |
+| **Administrator Rights** | Not required | Recommended for best experience |
+
+### 🔧 Quick Installation
+
+#### Step 1: Install Python Dependencies
+
+Open Command Prompt or PowerShell and run:
+
+```bash
 pip install requests beautifulsoup4
-2. Run the Application
-python app.py
-🚀 What Makes It Enterprise-Grade?
-
-Unlike basic PHP switchers, this tool includes:
-
-Dependency-aware PHP switching
-Automatic DLL compatibility validation
-Apache-safe deployment mechanism
-Rollback-safe architecture
-Failure recovery system
-⚠️ Disclaimer
-
-This tool modifies XAMPP internal files.
-Use it in development environments only. Always ensure backups are enabled before applying changes.
-
-<a name="arabic"></a>
-
-📖 العربية
-🔍 نظرة عامة
-
-PHP Manager Enterprise هو تطبيق سطح مكتب متقدم لإدارة إصدارات PHP داخل بيئة XAMPP بطريقة آمنة وذكية.
-
-يتيح لك التبديل بين الإصدارات وإدارة التوافق بين PHP وApache وملفات النظام (DLL) مثل OpenSSL وlibssh2 وcURL بدون كسر الخادم.
-
-✨ المميزات
-🔄 إدارة متعددة لإصدارات PHP
-🧠 نظام تحقق ذكي للتوافق مع Apache
-🔧 إصلاح تلقائي لمشاكل DLL الشائعة
-🏗️ تكامل آمن مع Apache بدون كسر الإعدادات
-💾 نظام نسخ احتياطي تلقائي واسترجاع فوري
-📊 عرض تقدم العمليات بشكل مباشر
-🌐 دعم اللغتين العربية والإنجليزية
-🛡️ وضع استعادة تلقائي عند فشل التحديث
