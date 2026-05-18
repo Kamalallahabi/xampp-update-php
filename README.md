@@ -77,7 +77,7 @@ Whether you are a beginner struggling with configuration files or a senior devel
 
 ### Option 1: Using the Executable (Recommended)
 
-1.  Download the latest `XPM.exe` from the [Releases Page](https://github.com/KamalAllahabi/XAMPP-Pro-Manager/releases).
+1.  Download the latest `XPM.exe` from the [Releases Page](https://github.com/Kamalallahabi/xampp-update-php/releases/tag/version).
 2.  Place the file in a convenient location.
 3.  **Right-click** on `XPM.exe` and select **"Run as Administrator"**.
 4.  Select your XAMPP installation folder when prompted.
