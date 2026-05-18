@@ -25,8 +25,8 @@ class Localization:
     
     TEXTS = {
         'en': {
-            'window_title': "PHP Manager Enterprise - DLL & Apache Fix",
-            'main_title': "PHP Manager Enterprise",
+            'window_title': "XAMPP Pro Manager",
+            'main_title': "XAMPP Pro Manager",
             'subtitle': "Manage PHP versions with automatic Apache & phpMyAdmin compatibility fixes",
             'server_info': "Server Information",
             'php_management': "PHP Version Management",
@@ -129,8 +129,8 @@ class Localization:
             'prod_enabled': "Prod Mode Enabled (Errors OFF, OpCache ON)."
         },
         'ar': {
-            'window_title': "مدير PHP المتقدم - إصلاح مشاكل DLL و Apache و phpMyAdmin",
-            'main_title': "مدير PHP المتقدم",
+            'window_title': "XAMPP Pro Manager",
+            'main_title': "XAMPP Pro Manager",
             'subtitle': "إدارة إصدارات PHP مع إصلاح تلقائي لمشاكل التوافق مع Apache و phpMyAdmin",
             'server_info': "معلومات السيرفر",
             'php_management': "إدارة إصدارات PHP",
