@@ -1,88 +1,116 @@
-# 🚀 XAMPP Pro Manager (PHP Manager Enterprise)
-
-**The Ultimate All-in-One Control Center for XAMPP: Version Management, Configuration, & Security Tools**
+# 🚀 XAMPP Pro Manager (XPM)
+### The Ultimate Desktop Utility for Managing PHP Versions & XAMPP Configuration
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://www.microsoft.com/windows)
-[![XAMPP](https://img.shields.io/badge/XAMPP-7.x%2B-green.svg)](https://www.apachefriends.org/)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010/11-blue)](https://www.microsoft.com/windows)
+[![Python](https://img.shields.io/badge/Built%20with-Python%203.x-3776AB?logo=python)](https://www.python.org/)
+[![Release](https://img.shields.io/badge/Version-1.0.0-green)](https://github.com/KamalAllahabi/XAMPP-Pro-Manager/releases)
 
 ---
 
-## 📊 Statistics & Status
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c1d8a80b-58d0-4b75-8127-307569a1e5b8" alt="Main Dashboard Interface" width="800"/>
+</p>
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/php-manager-enterprise?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/php-manager-enterprise?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/yourusername/php-manager-enterprise?style=social)
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/php-manager-enterprise)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/php-manager-enterprise)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/php-manager-enterprise)
+## 📖 Overview
+
+**XAMPP Pro Manager (XPM)** is a powerful, standalone desktop application designed to eliminate the headaches of managing local development environments. Built with Python and Tkinter, it provides a modern Graphical User Interface (GUI) to handle complex tasks like switching PHP versions, resolving DLL conflicts, editing `php.ini`, and securing MySQL—without touching a single line of code or command prompt.
+
+Whether you are a beginner struggling with configuration files or a senior developer needing quick environment switches, XPM automates the entire workflow.
+
+### 💡 Why Use XPM?
+*   **No More Manual Edits:** Stop opening `php.ini` in Notepad++. Change settings via intuitive toggles.
+*   **One-Click Version Switching:** Install and switch between PHP 7.x and 8.x instantly.
+*   **Auto-Fix Compatibility:** Automatically resolves common Apache/PHP DLL errors (`libssl`, `libcrypto`).
+*   **Bilingual Support:** Fully supports **English** and **Arabic** (RTL) interfaces.
 
 ---
 
-<a name="english"></a>
-## 📖 English Documentation
+## ✨ Key Features
 
-### 🎯 Overview
+### 🔄 PHP Version Management
+*   **Smart Installer:** Fetches compatible PHP versions directly from windows.php.net based on your Apache architecture (x86/x64).
+*   **Safe Switching:** Creates automatic backups before switching versions, allowing instant rollback if needed.
+*   **Apache Integration:** Automatically updates `httpd.conf` and `httpd-xampp.conf` to ensure Apache recognizes the new PHP version.
 
-**XAMPP Pro Manager** (formerly PHP Manager Enterprise) is a comprehensive desktop application designed to simplify and enhance the XAMPP development experience. It goes beyond simple version management by providing a unified interface for **PHP Version Control**, **Configuration Editing**, **Developer Tools**, and **Security Settings**.
+### ⚙️ Advanced Configuration Tool
+*   **Extension Manager:** Enable/Disable extensions (curl, gd, mysqli, openssl, etc.) with simple checkboxes.
+*   **Resource Limits:** Adjust `upload_max_filesize`, `post_max_size`, and `memory_limit` visually.
+*   **Dev/Prod Mode:** 
+    *   🛠️ **Dev Mode:** Enables error reporting, disables OpCache.
+    *   🚀 **Prod Mode:** Hides errors, enables OpCache for performance.
 
-Built with Python and Tkinter, it eliminates the need to manually edit `php.ini`, struggle with DLL conflicts, or use command-line tools for basic tasks. Whether you are switching PHP versions, increasing upload limits, or securing your MySQL database, this tool does it all with a single click.
+### 🛡️ Security & Maintenance
+*   **MySQL Security:** Set or change the MySQL `root` password directly from the app.
+*   **DLL Conflict Resolver:** One-click fix for missing or mismatched DLL files in the Apache bin folder.
+*   **PhpMyAdmin Fixer:** Automatically configures `mysqli` extensions and generates secure blowfish secrets.
 
-**The Problem:** Developers waste hours manually editing configuration files, resolving DLL errors after PHP updates, and toggling settings for debugging vs. production.
+### 🌍 User Experience
+*   **Real-time Logging:** Color-coded logs track every action for easy debugging.
+*   **Non-Blocking UI:** Downloads and installations run in background threads, keeping the interface responsive.
+*   **Portable:** No installation required for the `.exe` version. Just run and manage.
 
-**The Solution:** A centralized dashboard that automates version switching, provides a GUI for `php.ini` settings, manages extensions, and offers one-click "Dev Mode" toggles.
+---
 
-### ✨ Key Features
+## 📸 Screenshots
 
-#### 🔄 Advanced Version Management
-| Feature | Description |
-|---------|-------------|
-| **Smart Installation** | Download and install compatible PHP versions automatically. |
-| **One-Click Switching** | Switch between installed PHP versions instantly without manual file moving. |
-| **Auto-DLL Fixer** | Detects and resolves `libssl`, `libcrypto`, and other DLL conflicts between PHP and Apache. |
-| **Apache Integration** | Automatically updates `httpd.conf` and `httpd-xampp.conf` to match the active PHP version. |
+| Main Dashboard | Configuration Tool |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/c1d8a80b-58d0-4b75-8127-307569a1e5b8" width="400"/> | <img src="https://github.com/user-attachments/assets/a250d2e5-fa78-406e-8306-8a26a3088d1d" width="400"/> |
 
-#### ⚙️ Configuration & Tools (New!)
-| Feature | Description |
-|---------|-------------|
-| **Extension Manager** | Enable/Disable PHP extensions (curl, gd, openssl, etc.) via checkboxes instead of editing text files. |
-| **Upload & Memory Limits** | Easily adjust `upload_max_filesize`, `post_max_size`, and `memory_limit` via input fields. |
-| **Dev/Prod Mode Toggle** | One-click switch: **Dev Mode** (Errors ON, OpCache OFF) vs **Prod Mode** (Errors OFF, OpCache ON). |
-| **MySQL Security** | Set or change the MySQL `root` password directly from the interface. |
+---
 
-#### 🛡️ Reliability & UX
-| Feature | Description |
-|---------|-------------|
-| **Intelligent Backups** | Automatic timestamped backups of PHP folders before any change. |
-| **Bilingual Interface** | Full support for **English** and **Arabic** with RTL layout support. |
-| **Real-time Logging** | Color-coded operation logs for easy troubleshooting. |
-| **Non-Blocking UI** | Multi-threaded operations ensure the interface remains responsive during downloads. |
+## 📋 System Requirements
 
-### 🖼️ User Interface
+| Component | Requirement |
+|-----------|-------------|
+| **OS** | Windows 10 / 11 (64-bit recommended) |
+| **XAMPP** | Any standard XAMPP installation (C:/xampp or custom path) |
+| **Permissions** | **Administrator Rights Required** 🔑 |
+| **Internet** | Required for downloading PHP versions |
 
-<img width="951" height="828" alt="image" src="https://github.com/user-attachments/assets/c1d8a80b-58d0-4b75-8127-307569a1e5b8" />
-<img width="596" height="679" alt="image" src="https://github.com/user-attachments/assets/a250d2e5-fa78-406e-8306-8a26a3088d1d" />
+> ⚠️ **Important Note:** The application modifies system files within the XAMPP directory. You **MUST** run `XPM.exe` as **Administrator** (Right-click -> Run as Administrator) to avoid permission errors.
 
+---
 
+## 🚀 Installation & Usage
 
-### 📋 System Requirements
+### Option 1: Using the Executable (Recommended)
 
-| Component | Minimum | Recommended |
-|-----------|---------|-------------|
-| **Operating System** | Windows 7 | Windows 10/11 (64-bit) |
-| **XAMPP Version** | 7.x | 8.x or higher |
-| **Python Version** | 3.7 | 3.11+ |
-| **Internet Connection** | Required (for downloads) | Broadband connection |
-| **RAM** | 512 MB | 2 GB |
-| **Disk Space** | 500 MB | 2 GB |
-| **Administrator Rights** | Not required | Recommended for MySQL/Service changes |
+1.  Download the latest `XPM.exe` from the [Releases Page](https://github.com/KamalAllahabi/XAMPP-Pro-Manager/releases).
+2.  Place the file in a convenient location.
+3.  **Right-click** on `XPM.exe` and select **"Run as Administrator"**.
+4.  Select your XAMPP installation folder when prompted.
+5.  Start managing your server!
 
-### 🔧 Quick Installation
+### Option 2: Running from Source Code (For Developers)
 
-#### Step 1: Install Python Dependencies
+If you want to modify the code or run it without compiling:
 
-Open Command Prompt or PowerShell and run:
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/KamalAllahabi/XAMPP-Pro-Manager.git
+    cd XAMPP-Pro-Manager
+    ```
 
-```bash
-pip install requests beautifulsoup4
+2.  **Install Dependencies:**
+    Ensure you have Python 3.7+ installed, then run:
+    ```bash
+    pip install requests beautifulsoup4
+    ```
+
+3.  **Run the Application:**
+    ```bash
+    python update.py
+    ```
+    *(Note: On Windows, right-click your terminal/command prompt and "Run as Administrator" before executing the python command to ensure full permissions.)*
+
+---
+
+## 📂 Project Structure
+
+```text
+XAMPP-Pro-Manager/
+├── XPM.exe             # Compiled executable (Ready to use)
+├── update.py           # Source code (Python script)
+└── README.md           # Documentation
